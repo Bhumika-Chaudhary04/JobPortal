@@ -22,23 +22,26 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
-const corsOptions = {
-    origin:'http://localhost:5173',
-    credentials:true
-}
 
-// app.use(cors(corsOptions));
+
 
 app.use(cors({
-  origin: "https://jobportal-frontend-ch8p.onrender.com",
+  origin: [
+    "http://localhost:5173",
+    "https://jobportal-frontend-ch8p.onrender.com"
+  ],
   credentials: true
 }));
 
 
 const PORT = process.env.PORT || 8000;
 
+app.get("/", (req, res) => {
+  res.send("Backend API is running ✅");
+});
 
 // api's
+
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/company", companyRoute);
 app.use("/api/v1/job", jobRoute);
