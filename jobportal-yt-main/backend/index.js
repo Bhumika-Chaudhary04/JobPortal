@@ -27,7 +27,13 @@ const corsOptions = {
     credentials:true
 }
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+
+app.use(cors({
+  origin: "https://jobportal-frontend-ch8p.onrender.com",
+  credentials: true
+}));
+
 
 const PORT = process.env.PORT || 8000;
 
